@@ -63,7 +63,9 @@ export default function Lending() {
                 Accept Crypto Payments without paying Hefty Commissions. 
             </p>
 
-            <h4 className="mt-5 text-center mb-5">Decentralised Escrow, Subscription Payment, Fiat On Ramp, Invoicing.</h4>
+            <h6 className="mt-3 mb-3 text-center text-primary">Blockchain, BOBA Network testnet</h6>
+
+            <h4 className="mt-2 text-center mb-5">Decentralised Escrow, Subscription Payment, Fiat On Ramp, Invoicing.</h4>
                   <Button
                   className="text-center"
                   variant="contained"

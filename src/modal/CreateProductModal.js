@@ -73,8 +73,7 @@ function CreateProductModal(props) {
       price: "",
     },
     validationSchema: RegisterSchema,
-    onSubmit: async (values, { resetForm }) => {
-      console.log(props.currentUser);
+    onSubmit: async (values, { resetForm }) => { 
       try {
         setLoading(true);
         props.setLoading(true);

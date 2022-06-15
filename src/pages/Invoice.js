@@ -107,8 +107,7 @@ function Invoices() {
     const invoicedata = await JSON.parse(JSON.stringify(data));
     const d =
       data &&
-      invoicedata.filter((inv) => inv.name == user?.attributes.username);
-    console.log(data);
+      invoicedata.filter((inv) => inv.name == user?.attributes.username); 
     data && setInvoices(d);
     setLoading(false);
   }

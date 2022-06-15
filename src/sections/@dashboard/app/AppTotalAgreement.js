@@ -77,8 +77,7 @@ export default function AppTotalAgreement() {
       contractAddress: contractAddresss,
       startingBlock:  pBlock,
       endingBlock: aBlock,
-    }); 
-    console.log(logs,"log");
+    });  
        setAgree(logs.data.items.length); 
   }, []);
 

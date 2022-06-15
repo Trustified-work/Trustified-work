@@ -34,8 +34,8 @@ export const TransakWeb3ContextWeb3ContextProvider = (props) => {
     transak.on(transak.ALL_EVENTS, (data) => {
       console.log(data);
     });
-    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => {
-      console.log(orderData);
+    transak.on(transak.EVENTS.TRANSAK_ORDER_SUCCESSFUL, (orderData) => { 
+     
       transak.close();
     });
   }

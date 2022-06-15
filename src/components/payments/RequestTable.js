@@ -26,8 +26,7 @@ function RequestTable({ requestData }) {
   const { data, isLoading } = useMoralisCloudFunction("getAllUser");  
 
 
-  const handleSendPayment=async(add)=>{ 
-    console.log(add);
+  const handleSendPayment=async(add)=>{  
     const allUser = JSON.parse(JSON.stringify(data)); 
     const u = allUser && allUser.filter((e)=>e.username === add.from); 
     u.map(async(e)=>{   
