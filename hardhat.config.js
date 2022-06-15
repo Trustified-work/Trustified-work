@@ -12,31 +12,7 @@ module.exports = {
     boba_rinkeby: {
       url: `https://rinkeby.boba.network`,
       accounts: [privateKey],
-    },
-    matic:{
-      url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_KEY}`,
-      accounts:[privateKey],
-      gas: 2100000,
-      gasPrice: 8000000000
     }, 
-    ropsten:{
-      url:`https://ropsten.infura.io/v3/${projectId}`,
-      accounts:[privateKey],
-      gas: 2100000,
-      gasPrice: 8000000000
-    },
-    bsc: {
-      url: "https://data-seed-prebsc-1-s1.binance.org:8545",
-      chainId: 97,
-      gasPrice: 20000000000,
-      accounts:[privateKey]
-    },
-    avalancheTest: {
-      url: 'https://api.avax-test.network/ext/bc/C/rpc',
-      gasPrice: 225000000000,
-      chainId: 43113,
-      accounts:[privateKey],
-    },
   },
 
   solidity: {

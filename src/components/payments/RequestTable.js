@@ -70,9 +70,9 @@ function RequestTable({ requestData }) {
               <TableRow>
                 <TableCell>{request.from}</TableCell>
                 <TableCell>{request.to}</TableCell>
-                <TableCell>{request.token}</TableCell>
+                <TableCell>{request.token.replace("ONE","BOBA")}</TableCell>
                 <TableCell>{request.amount}</TableCell>
-                <TableCell>{request.message}</TableCell>
+                <TableCell>{request.message.replace("Harmony(ONE)","BOBA")}</TableCell>
                 <TableCell>
                   {request.status == 0 ? "Pending" : "Completed"}
                 </TableCell>

@@ -22,10 +22,9 @@ function GetStackPercent(props) {
                 name="price"
                 id="price"
                 type="number"
-                label={ formdata.chain === 'binance' &&  "Price (in BNB)" ||
-                 formdata.chain === 'mumbai' &&  "Price (in MATIC)" ||
+                label={  
                  formdata.chain === 'ropsten' &&  "Price (in ETH)" ||
-                 formdata.chain === 'avalanche' &&  "Price (in AVAX)" ||
+                 formdata.chain === 'boba' &&  "Price (in BOBA)" ||
                  formdata.chain === '' &&  "Price" 
                  }  
                  onChange={value.setFormdata("price")}

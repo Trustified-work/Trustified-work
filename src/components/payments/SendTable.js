@@ -38,9 +38,9 @@ function SendTable({ sendData }) {
               <TableRow>
                 <TableCell>{send.from}</TableCell>
                 <TableCell>{send.to}</TableCell>
-                <TableCell>{send.token}</TableCell>
+                <TableCell>{send.token.replace("ONE","BOBA")}</TableCell>
                 <TableCell>{send.amount}</TableCell>
-                <TableCell>{send.message}</TableCell>
+                <TableCell>{send.message.replace("Harmony(ONE)","BOBA")}</TableCell>
                 <TableCell>
                   {send.status == 0
                     ? "Pending"

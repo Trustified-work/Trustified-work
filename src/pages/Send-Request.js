@@ -117,22 +117,8 @@ function SendRequest() {
     let opt = new Web3(`https://ropsten.infura.io/v3/${process.env.REACT_APP_ROPSTEN_KEY}`);
     let add = opt.utils.toChecksumAddress(user && user.attributes.ethAddress);
     let tmetadata = await opt.eth.getBalance(user && user.attributes.ethAddress);
-    setEth(ethers.utils.formatUnits(tmetadata, 18));
-
-    const mtk = { chain: "mumbai", address: user.attributes.ethAddress };
-    const mtkdata = Moralis.Web3.getAllERC20(mtk).then((res) => {
-      setMtk(ethers.utils.formatUnits(res[0].balance, 18));
-    });
-
-    let web = new Web3(`https://data-seed-prebsc-1-s1.binance.org:8545`);
-    let bscdata = await web.eth.getBalance(user && user.attributes.ethAddress);
-    setBsc(ethers.utils.formatUnits(bscdata, 18));
-
-    let options = new Web3(`https://api.avax-test.network/ext/bc/C/rpc`);
-    let tokenMetadata = await options.eth.getBalance(user && user.attributes.ethAddress);
-    setAvax(ethers.utils.formatUnits(tokenMetadata, 18)); 
-  };
-
+    setEth(ethers.utils.formatUnits(tmetadata, 18)); 
+  } 
   useEffect(() => {
     getWalletBalence();
     setData();
@@ -199,19 +185,7 @@ function SendRequest() {
           alignItems="flex-end"
           justifyContent="flex-end"
           mb={2}
-        >
-          {
-            chain === 80001 && <Button variant="outlined">
-              <img
-                src="/images/logo1.png"
-                width={20}
-                height={20}
-                alt=""
-                style={{ marginRight: "10px" }}
-              />{" "}
-              {mtk} MATIC
-            </Button>
-          }
+        > 
           {
             chain == 3 && <Button variant="outlined">
               <img
@@ -223,20 +197,8 @@ function SendRequest() {
               />{" "}
               {eth} ETH
             </Button>
-          }
-
-          {
-            chain == 97 && <Button variant="outlined">
-              <img
-                src="/images/bnb.png"
-                width={20}
-                height={20}
-                alt=""
-                style={{ marginRight: "10px" }}
-              />{" "}
-              {bsc} BNB
-            </Button>
-          }
+          } 
+          
           {
             chain == 28 && <Button variant="outlined">
               <img
@@ -250,18 +212,7 @@ function SendRequest() {
             </Button>
           }
 
-          {
-            chain == 43113 && <Button variant="outlined">
-              <img
-                src="/images/avax.png"
-                width={20}
-                height={20}
-                alt=""
-                style={{ marginRight: "10px" }}
-              />{" "}
-              {avax} AVAX
-            </Button>
-          }
+           
         </Stack>
 
         <Stack>
@@ -288,6 +239,7 @@ function SendRequest() {
       </Container>
     </Page>
   );
-}
+        }
+      
 
 export default SendRequest;

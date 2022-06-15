@@ -61,29 +61,24 @@ export default function AppTotalAgreement() {
 
     const networkId = window.ethereum.networkVersion; 
       let contractAddresss;
-      if (networkId == 97) {
-        contractAddresss = AgreementBscAddress;
-      } else if (networkId == 80001) {
-        contractAddresss = AgreementMumbaiAddress;
-      } else if (networkId == 3) {
+        if (networkId == 3) {
         contractAddresss = AgreementRopestenAddress;
       } else if (networkId == 28) {
         contractAddresss = AgreementAddress;
-      }  else if (networkId == 43113) {
-        contractAddresss = AgreementAvaxAddress;
       } 
 
-      const pBlock = "26456572";
-      const aBlock ="";
+      const pBlock = "108596";
+      const aBlock ="123581";
       const rBlock = "";
       const bBlock = "";
 
     const logs = await Moralis.Plugins.covalent?.getLogEventsByContractAddress({
       chainId: networkId,
       contractAddress: contractAddresss,
-      startingBlock:  networkId == 80001 && pBlock  || networkId == 3 && rBlock  || networkId == 97 && bBlock  || networkId == 43113 && aBlock ,
-      endingBlock: networkId == 80001 && pBlock  || networkId == 3 && rBlock  || networkId == 97 && bBlock  || networkId == 43113 && aBlock ,
+      startingBlock:  pBlock,
+      endingBlock: aBlock,
     }); 
+    console.log(logs,"log");
        setAgree(logs.data.items.length); 
   }, []);
 

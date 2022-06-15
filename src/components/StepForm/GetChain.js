@@ -6,7 +6,7 @@ import { AgreementContext } from 'src/context/AgreementContext';
 function GetChain() {
     const value = useContext(AgreementContext);
     const formdata = value.labelInfo.formData;
-    const [creator, setCreator] = useState("");
+    const [creator, setCreator] = useState(formdata.buyer);
     const [buyer, setBuyer] = useState("");
     const [seller, setSeller] = useState("");
     const [chain, setChain] = useState('');
@@ -59,14 +59,10 @@ function GetChain() {
                         value={formdata.chain} 
                         onChange={(e) => {
                             const networkId = window.ethereum.networkVersion;
-                            if (e.target.value == 'bsc' && networkId !== '97') {
-                                toast.error("Please connect to the BSC Testnet network in Metamask to continue!");
-                            } else if (e.target.value == 'mumbai' && networkId !== '80001') {
-                                toast.error("Please connect to the Polygon Mumbai Testnet network in Metamask to continue!");
-                            } else if (e.target.value == 'ropsten' && networkId !== '3') {
+                            if (e.target.value == 'ropsten' && networkId !== '3') {
                                 toast.error("Please connect to the Ropsten Network in Metamask to continue!");
-                            }   else if (e.target.value == 'avalanche' && networkId !== '43113') {
-                                toast.error("Please connect to the AVAX FUJI network in Metamask to continue!");
+                            }  else if (e.target.value == 'boba' && networkId !== '28') {
+                                toast.error("Please connect to the BOBA Rinkeby network in Metamask to continue!");
                             }
                             setChain(e.target.value) 
                         }
@@ -79,9 +75,9 @@ function GetChain() {
                             spacing={2}
                         >
                             <FormControlLabel
-                                value="mumbai"
+                                value="boba"
                                 control={<Radio />}
-                                label="Mumbai"
+                                label="Boba"
                                 onChange={value.setFormdata("chain")}
                             />
                             <FormControlLabel
@@ -89,48 +85,9 @@ function GetChain() {
                                 control={<Radio />}
                                 label="Ropsten"
                                 onChange={value.setFormdata("chain")}
-                            />
-                             <FormControlLabel
-                                value="avalanche"
-                                control={<Radio />}
-                                label="Avalanche"
-                                onChange={value.setFormdata("chain")}
-                            />
-                             <FormControlLabel
-                                value="bsc"
-                                control={<Radio />}
-                                label="BSC"
-                                onChange={value.setFormdata("chain")}
-                            />
+                            /> 
                         </Stack>
-                        </RadioGroup>
-                        {/* <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={chain}
-                            label="Chain"
-                            onChange={(e) => {
-                                const networkId = window.ethereum.networkVersion;
-                                if (e.target.value == 'Binance' && networkId !== '97') {
-                                    toast.error("Please connect to the BSC Testnet network in Metamask to continue!");
-                                } else if (e.target.value == 'Polygon' && networkId !== '80001') {
-                                    toast.error("Please connect to the Polygon Mumbai Testnet network in Metamask to continue!");
-                                } else if (e.target.value == 'Ropsten' && networkId !== '3') {
-                                    toast.error("Please connect to the Ropsten Network in Metamask to continue!");
-                                } else if (e.target.value == 'Boba' && networkId !== '28') {
-                                    toast.error("Please connect to the BOBA network in Metamask to continue!");
-                                } else if (e.target.value == 'Avax' && networkId !== '43113') {
-                                    toast.error("Please connect to the AVAX FUJI network in Metamask to continue!");
-                                }
-                                setChain(e.target.value) 
-                            }
-                            }
-                        > 
-                            <MenuItem value="Binance" onChange={value.setFormdata("chain")} >BSC</MenuItem>
-                            <MenuItem value="Polygon" onChange={value.setFormdata("chain")} >Polygon Mumbai</MenuItem>
-                            <MenuItem value="Ropsten" onChange={value.setFormdata("chain")} >Ropsten</MenuItem>
-                            <MenuItem value="Avax" onChange={value.setFormdata("chain")} >Avalanche FUJI</MenuItem>
-                        </Select> */}
+                        </RadioGroup> 
                     </FormControl>
                 </Box>
                 {creator === "buyer" ? (

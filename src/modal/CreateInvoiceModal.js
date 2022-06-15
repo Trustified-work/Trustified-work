@@ -322,13 +322,12 @@ function CreateInvoiceModal(props) {
                           setToken(e.target.value);
                         }}
                       >
+                        <MenuItem value="BOBA">BOBA</MenuItem>
                         <MenuItem value="ETH">ETH</MenuItem>
-                        <MenuItem value="MATIC">MATIC</MenuItem>
-                        <MenuItem value="AVAX">AVAX</MenuItem>
-                        <MenuItem value="BSC">BNB</MenuItem> 
+                         
                       </Select>
                     </FormControl>
-                    {(selectedToken == "MATIC" || selectedToken == "ETH") && (
+                    {(selectedToken == "BOBA" || selectedToken == "ETH") && (
                       <FormHelperText
                         style={{ fontWeight: "bold", color: "black" }}
                       >
@@ -349,9 +348,7 @@ function CreateInvoiceModal(props) {
                         {...formik.getFieldProps("network")}
                       >
                         <MenuItem value="ethereum">Ethereum</MenuItem>
-                        <MenuItem value="polygon">Polygon</MenuItem>
-                        <MenuItem value="binance">Bsc</MenuItem>
-                        <MenuItem value="avalanche">Avalanche</MenuItem> 
+                        <MenuItem value="boba">BOBA Rinkeby</MenuItem> 
                       </Select>
                     </FormControl>
                   </Grid>

@@ -189,8 +189,8 @@ export default function InvoiceDetail() {
                           </th>
                           <th className="text-right">
                             {invoice && invoice.price * invoice.quantity + gst}
-                            &nbsp;{invoice?.token} Preferred Network:{" "}
-                            {invoice?.network}
+                            &nbsp;{invoice?.token.replace("ONE","BOBA")} Preferred Network:{" "}
+                            {invoice?.network.replace("Harmony","BOBA Rinkeby")}
                           </th>
                         </tr>
                       </tbody>

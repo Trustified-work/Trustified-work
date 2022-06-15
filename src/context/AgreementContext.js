@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import React, { useState, createContext } from "react";
 import { useMoralis } from "react-moralis";
 import { toast } from "react-toastify";
+import { AgreementAddress } from "src/contracts/config";
 import { AgreementAvaxAddress, AgreementBscAddress, AgreementContractAbi, AgreementMumbaiAddress, AgreementRopestenAddress } from "src/contracts/contract";
 import { NotificationContext } from "./Notification";
 
@@ -20,11 +21,11 @@ export const AgreementContextProvider = (props) => {
     const [labelInfo, setlabelInfo] = useState({
         formData: {
             title: "",
-            chain: "mumbai",
+            chain: "boba",
             description: "",
             buyerAddress: "",
             sellerAddress: "",
-            buyer:"", 
+            buyer:"buyer", 
             price: "",
             stakePercentBuyer: "",
             stakePercentSeller: "",
@@ -48,59 +49,49 @@ export const AgreementContextProvider = (props) => {
         setOpen(false);
     }
 
-    const createAgreement = async () => {
-        let contractAddresss;
-        if (labelInfo.formData.chain == "bsc") {
-            contractAddresss = AgreementBscAddress;
-        } else if (labelInfo.formData.chain == "mumbai") {
-            contractAddresss = AgreementMumbaiAddress;
-        } else if (labelInfo.formData.chain == "ropsten") {
-            contractAddresss = AgreementRopestenAddress;
-        }   else if (labelInfo.formData.chain == "avalanche") {
-            contractAddresss = AgreementAvaxAddress;
-        }
-
-      const   bAddress = labelInfo.formData.buyer == 'buyer' ?  user.attributes.ethAddress : labelInfo.formData.buyerAddress;
-      const   sAddress = labelInfo.formData.buyer == 'seller' ?  user.attributes.ethAddress : labelInfo.formData.sellerAddress;
- 
-        setLoading(true);
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const agreementContract = new ethers.Contract(
-            contractAddresss,
-            AgreementContractAbi,
-            signer
-        );
-
-        let txn;
-
-        try {
-            const formattedPrice = ethers.utils.parseEther(labelInfo.formData.price.toString());
-            txn = await agreementContract.agreementCreate(
-                bAddress,
-                sAddress,
-                formattedPrice,
-                labelInfo.formData.stakePercentBuyer.toString(),
-                labelInfo.formData.stakePercentSeller.toString(),
-                labelInfo.formData.title,
-                labelInfo.formData.description
-            );
-            await txn.wait();
-
-            await sendNotifications({
-                to: user.attributes.ethAddress,
-                message: `You Create ${labelInfo.formData.title} Agreement Successfully! on ${labelInfo.formData.chain} Network`,
-            })
-            console.log(txn, "transaction");
-            toast.success("success");
-            setLoading(false); 
-            handleClose();
-        } catch (err) {
-            setLoading(false);
-            console.log(err);
-            toast.error("error");
-        }
-    };
+    const createAgreement = async () => {  
+        const   bAddress = labelInfo.formData.buyer == 'buyer' ?  user.attributes.ethAddress : labelInfo.formData.buyerAddress;
+        const   sAddress = labelInfo.formData.buyer == 'seller' ?  user.attributes.ethAddress : labelInfo.formData.sellerAddress;
+   
+          setLoading(true);
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const agreementContract = new ethers.Contract(
+              AgreementAddress,
+              AgreementContractAbi,
+              signer
+          );
+  
+          let txn;
+  
+          try {
+              const formattedPrice = ethers.utils.parseEther(labelInfo.formData.price.toString());
+              txn = await agreementContract.agreementCreate(
+                  bAddress,
+                  sAddress,
+                  formattedPrice,
+                  labelInfo.formData.stakePercentBuyer.toString(),
+                  labelInfo.formData.stakePercentSeller.toString(),
+                  labelInfo.formData.title,
+                  labelInfo.formData.description
+              );
+              await txn.wait();
+  
+              await sendNotifications({
+                  to: user.attributes.ethAddress,
+                  message: `You Create ${labelInfo.formData.title} Agreement Successfully! on ${labelInfo.formData.chain} Network`,
+              })
+              console.log(txn, "transaction");
+              toast.success("success");
+              setLoading(false); 
+              handleClose();
+          } catch (err) {
+              setLoading(false);
+              console.log(err);
+              toast.error("error");
+          }
+      }; 
+     
 
     return (
         <AgreementContext.Provider
